@@ -16,6 +16,30 @@ requested through the API.
 | `/ws` | the websocket access route for interval based data |
 | `data` | the latest statistics in json |
 
+## Examples
+
+```bash
+$ curl http://localhost:8080/data
+{
+   ":total":124, # total packets
+   ":sources":{ # packets counted by ip
+      "000.000.000.000":36,
+      "000.000.000.001":2,
+      "000.000.000.002":1,
+      "000.000.000.003":1,
+      "000.000.000.004":1,
+      "000.000.000.005":2,
+      "000.000.000.006":1,
+      "000.000.000.007":3
+   },
+   ":countries":{ # packets counted by country
+      "Germany":36,
+      "United States":10,
+      "Europe":1
+   }
+}
+```
+
 ## Procedure
 
 Each received packet will be parsed. If an IP address can be extracted from that protocol, `ortung` will update the
@@ -36,8 +60,8 @@ $ sudo bin/ortung
 
 ## Todo
 
-- [] build the map
-- [] application arguments _(port, interval, interface)_
+- [ ] build the map
+- [ ] application arguments _(port, interval, interface)_
 
 ## License
 
