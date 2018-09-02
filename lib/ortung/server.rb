@@ -33,7 +33,9 @@ module Ortung
     end
 
     get '/' do
-      erb :index, :layout => :'layouts/main'
+      erb :index, :layout => :'layouts/main', :locals => {
+        title: "dashboard"
+      }
     end
 
     get '/ws' do

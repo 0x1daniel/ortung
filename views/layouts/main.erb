@@ -4,7 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>ortung - <%= @title %></title>
+    <title>ortung - <%= title %></title>
+    <style media="screen">
+      * {
+        font-family: monospace;
+        color: #212121;
+        font-size: .9rem;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 70vh;
+        max-width: 500px;
+        margin: 20px auto;
+      }
+      body > div {
+        width: 50%;
+        padding: 0 20px;
+      }
+      #ip-table, #country-table {
+        overflow-y: auto;
+        height: 100%;
+        text-align: right;
+      }
+      b { float: left; }
+    </style>
   </head>
   <body>
     <%= yield %>

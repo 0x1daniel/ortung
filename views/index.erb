@@ -1,10 +1,48 @@
+<div>
+  <h2>common countries</h2>
+  <div id="country-table">
+
+  </div>
+</div>
+
+<div>
+  <h2>common ips</h2>
+  <div id="ip-table">
+
+  </div>
+</div>
+
 <script type="text/javascript">
+  var el_countries_table = document.getElementById('country-table'),
+      el_ips_table = document.getElementById('ip-table');
+
+  function parseMessage(msg) {
+    var d = JSON.parse(msg);
+
+    var ips = d[':sources'],
+        countries = d[':countries'],
+        ips_sorted = Object.keys(ips).sort(function(a,b){return ips[b]-ips[a]}),
+        countries_sorted = Object.keys(countries).sort(function(a,b){return countries[b]-countries[a]});
+
+    el_countries_table.innerHTML = "";
+    countries_sorted.forEach(function(k) {
+      el_countries_table.innerHTML += "<b>" + k + "</b> " + countries[k] + "<br>";
+    });
+
+    el_ips_table.innerHTML = "";
+    ips_sorted.forEach(function(k) {
+      el_ips_table.innerHTML += "<b>" + k + "</b> " + ips[k] + "<br>";
+    });
+  }
   var s = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '/ws');
   s.onopen = function() {
-    console.log('connected')
+    console.log('connected');
   };
   s.onmessage = function(msg) {
-    console.log(msg.data);
+    if(msg.data != this.msgBefore) {
+      this.msgBefore = msg.data;
+      parseMessage(msg.data);
+    }
   };
   s.onclose = function() {
     console.log('disconnected');
