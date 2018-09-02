@@ -1,0 +1,12 @@
+<script type="text/javascript">
+  var s = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '/ws');
+  s.onopen = function() {
+    console.log('connected')
+  };
+  s.onmessage = function(msg) {
+    console.log(msg.data);
+  };
+  s.onclose = function() {
+    console.log('disconnected');
+  };
+</script>
