@@ -1,6 +1,6 @@
 # ortung :mag:
 
-track you data sources
+track your data sources
 
 ## About
 
